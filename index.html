@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mehdi will be a software engineer inchallah</h1>
+
+    <form action="" method="get">
+        <input type="number" name="number1" id="number1"><br><br>
+        <input type="text" name="operator" id="operator"><br><br>
+        <input type="number" name="number2" id="number2"><br><br>
+        <button type="submit">Calculate</button>
+    </form>
+
+    <p>Le resultat est : <span id="result"></span></p>
+
+    <script>
+        const result = document.getElementById('result');
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const number1 = document.getElementById('number1').value;
+            const operator = document.getElementById('operator').value;
+            const number2 = document.getElementById('number2').value;
+
+            if(!number1 || !number2 || !operator){
+                alert('Fill the fields first !!');
+                return;
+            }
+
+            const url = `http://127.0.0.1:8000/calculate?number1=${number1}&number2=${number2}&operator=${operator}`;
+
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    result.textContent = data.result;
+                })
+                .catch((error) => {
+                    console.log('Error', error);
+                    result.textContent = 'Error';
+                });
+        });
+    </script>
+</body>
+</html>
