@@ -45,7 +45,6 @@ def main(page: Page):
         width=160,
         height=160,
     )
-    page.add(image)
     
     # Add Text Description
     text = Text(
@@ -54,7 +53,6 @@ def main(page: Page):
         weight=FontWeight.W_600,
         font_family="Roboto_slab",
     )
-    page.add(text)
     
     # Add Inputs fields
     input_email = TextField(
@@ -99,7 +97,7 @@ def main(page: Page):
         on_click=submit_data
     )
     
-    page.add(input_email, input_password, submit_btn)
+    page.add(image, text, input_email, input_password, submit_btn)
     
     # ##### Footer #####
     page.navigation_bar = CupertinoNavigationBar(
